@@ -70,28 +70,10 @@ Puppet::Type.type(:cs_colocation).provide(:crm, :parent => Puppet::Provider::Cor
     @property_hash.clear
   end
 
-  # Getter that obtains the primitives array for us that should have
-  # been populated by prefetch or instances (depends on if your using
-  # puppet resource or not).
-  def primitives
-    @property_hash[:primitives]
-  end
-
-  # Getter that obtains the our score that should have been populated by
-  # prefetch or instances (depends on if your using puppet resource or not).
-  def score
-    @property_hash[:score]
-  end
-
-  # Our setters for the primitives array and score.  Setters are used when the
-  # resource already exists so we just update the current value in the property
-  # hash and doing this marks it to be flushed.
+  # Our setter for primitives is sorting should just in case, since we
+  # don't care about order here.
   def primitives=(should)
     @property_hash[:primitives] = should.sort
-  end
-
-  def score=(should)
-    @property_hash[:score] = should
   end
 
   # Flush is triggered on anything that has been detected as being

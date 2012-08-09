@@ -43,4 +43,9 @@ class Puppet::Provider::Corosync < Puppet::Provider
     debug(@property_hash.inspect)
     !(@property_hash[:ensure] == :absent or @property_hash.empty?)
   end
+
+  # Puppet has the build in method for generating simply getters and setters for
+  # all type properties.  The reduces the amount of code found in each provider.
+  mk_resource_methods
+
 end

@@ -53,20 +53,6 @@ Puppet::Type.type(:cs_property).provide(:crm, :parent => Puppet::Provider::Coros
     @property_hash.clear
   end
 
-  # Getters that obtains the first and second primitives and score in our
-  # ordering definintion that have been populated by prefetch or instances
-  # (depends on if your using puppet resource or not).
-  def value
-    @property_hash[:value]
-  end
-
-  # Our setters for the first and second primitives and score.  Setters are
-  # used when the resource already exists so we just update the current value
-  # in the property hash and doing this marks it to be flushed.
-  def value=(should)
-    @property_hash[:value] = should
-  end
-
   # Flush is triggered on anything that has been detected as being
   # modified in the property_hash.  It generates a temporary file with
   # the updates that need to be made.  The temporary file is then used

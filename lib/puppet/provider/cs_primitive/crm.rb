@@ -123,48 +123,7 @@ Puppet::Type.type(:cs_primitive).provide(:crm, :parent => Puppet::Provider::Coro
     @property_hash.clear
   end
 
-  # Getters that obtains the parameters and operations defined in our primitive
-  # that have been populated by prefetch or instances (depends on if your using
-  # puppet resource or not).
-  def parameters
-    @property_hash[:parameters]
-  end
-
-  def operations
-    @property_hash[:operations]
-  end
-
-  def metadata
-    @property_hash[:metadata]
-  end
-
-  def ms_metadata
-    @property_hash[:ms_metadata]
-  end
-
-  def promotable
-    @property_hash[:promotable]
-  end
-
-  # Our setters for parameters and operations.  Setters are used when the
-  # resource already exists so we just update the current value in the
-  # property_hash and doing this marks it to be flushed.
-  def parameters=(should)
-    @property_hash[:parameters] = should
-  end
-
-  def operations=(should)
-    @property_hash[:operations] = should
-  end
-
-  def metadata=(should)
-    @property_hash[:metadata] = should
-  end
-
-  def ms_medata=(should)
-    @property_hash[:ms_metadata] = should
-  end
-
+  # Our special setter that creates a master/slave relationship.
   def promotable=(should)
     case should
     when :true
